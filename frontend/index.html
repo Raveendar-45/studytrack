@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyTrack — Unified Full-Stack Study Management Platform</title>
+    <meta name="description" content="Myntra Trainee Enablement StudyTrack Platform with Integrated Algorithms Engine and AI Assistant">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Error Banner -->
+    <div id="error-banner" class="error-banner hidden" role="alert">
+        <span id="error-message">Could not reach the StudyTrack backend.</span>
+        <button id="close-error-btn" class="close-error">&times;</button>
+    </div>
+
+    <!-- Page Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-logo">ST</div>
+                <div>
+                    <h1>StudyTrack</h1>
+                    <p class="tagline">Myntra Trainee Enablement — Unified Roster, Algorithms & AI Platform</p>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#roster-section" class="nav-item active">Roster Management</a>
+                <a href="#algorithms-section" class="nav-item">Algorithms Engine</a>
+                <a href="#ai-section" class="nav-item">AI Helper</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+
+        <!-- SECTION 1: ROSTER MANAGEMENT -->
+        <section id="roster-section" class="dashboard-card">
+            <div class="section-header">
+                <h2>Student Roster Management</h2>
+                <p>Live student roster powered by FastAPI + SQLAlchemy ORM backend</p>
+            </div>
+
+            <!-- Create Student Form -->
+            <form id="student-form" class="student-form">
+                <div class="form-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" placeholder="e.g. Vikram Verma" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-email">Email Address</label>
+                    <input type="email" id="student-email" placeholder="vikram.verma@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-age">Age</label>
+                    <input type="number" id="student-age" placeholder="22" min="1" required>
+                </div>
+                <button type="submit" id="add-student-btn" class="btn btn-primary">
+                    <span class="btn-icon">+</span> Add Student
+                </button>
+            </form>
+
+            <div class="roster-toolbar">
+                <div class="roster-stats">
+                    <span id="roster-count-badge" class="badge">Loading Roster...</span>
+                </div>
+                <div class="roster-actions">
+                    <button id="refresh-roster-btn" class="btn btn-secondary btn-sm">Refresh List</button>
+                </div>
+            </div>
+
+            <!-- Roster Container -->
+            <div id="roster-list" class="roster-grid">
+                <!-- Student cards dynamically rendered here via app.js -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTEGRATED ALGORITHMS ENGINE -->
+        <section id="algorithms-section" class="dashboard-card">
+            <div class="section-header">
+                <h2>Integrated Algorithms Engine</h2>
+                <p>Hand-rolled Insertion Sort, Iterative Binary Search, and Roster Reporting</p>
+            </div>
+
+            <div class="algo-grid">
+                <!-- Insertion Sort Card -->
+                <div class="algo-card">
+                    <h3>Insertion Sort</h3>
+                    <p class="algo-desc">Hand-rolled in-place $O(n^2)$ sorting engine.</p>
+                    <div class="button-group">
+                        <button id="sort-age-btn" class="btn btn-accent btn-sm">Sort by Age (Asc)</button>
+                        <button id="sort-name-btn" class="btn btn-accent btn-sm">Sort by Name (Asc)</button>
+                    </div>
+                </div>
+
+                <!-- Binary Search Card -->
+                <div class="algo-card">
+                    <h3>Binary Search</h3>
+                    <p class="algo-desc">Hand-rolled $O(\log n)$ search over name-sorted roster.</p>
+                    <div class="search-box">
+                        <input type="text" id="search-name-input" placeholder="Exact student name (e.g. Priya Iyer)">
+                        <button id="search-name-btn" class="btn btn-primary btn-sm">Search</button>
+                    </div>
+                    <div id="search-result-box" class="result-box hidden"></div>
+                </div>
+
+                <!-- Roster Report Card -->
+                <div class="algo-card">
+                    <h3>Roster Aggregations & Report</h3>
+                    <p class="algo-desc">Formatted roster text generator & min-age accumulator.</p>
+                    <div class="report-controls">
+                        <label for="min-age-input">Min Age Filter:</label>
+                        <input type="number" id="min-age-input" value="21" min="1" class="sm-input">
+                        <button id="generate-report-btn" class="btn btn-secondary btn-sm">Generate Report</button>
+                    </div>
+                    <div id="report-result-box" class="result-box hidden">
+                        <div id="report-stat" class="report-stat"></div>
+                        <pre id="report-output" class="code-block"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: INTEGRATED AI ASSISTANT PANEL -->
+        <section id="ai-section" class="dashboard-card">
+            <div class="section-header">
+                <h2>AI Assistant & Study Helper</h2>
+                <p>Deterministic Note Summarization and Vocabulary Cosine-Similarity Semantic Search</p>
+            </div>
+
+            <div class="ai-grid">
+                <!-- Note Summarizer Panel -->
+                <div class="ai-panel">
+                    <h3>Study Note Summarizer</h3>
+                    <p class="panel-desc">Transforms raw notes into structured topic, key points, and difficulty metrics.</p>
+                    <textarea id="note-text-input" rows="5" placeholder="Paste study notes here... (e.g., Binary search requires a sorted array and repeatedly halves the search range using midpoint comparison.)"></textarea>
+                    <button id="summarize-btn" class="btn btn-ai">Summarize Notes</button>
+
+                    <div id="summary-result-box" class="summary-card hidden">
+                        <div class="summary-header">
+                            <span class="summary-label">Topic:</span>
+                            <span id="summary-topic" class="summary-value"></span>
+                            <span id="summary-difficulty" class="badge-difficulty"></span>
+                        </div>
+                        <div class="summary-body">
+                            <h4>Key Points:</h4>
+                            <ul id="summary-keypoints" class="keypoints-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic Search Panel -->
+                <div class="ai-panel">
+                    <h3>Semantic Note Search</h3>
+                    <p class="panel-desc">Ranks study material using 12-word fixed vocabulary embeddings & Cosine Similarity.</p>
+                    <div class="search-box">
+                        <input type="text" id="ai-search-query-input" placeholder="Query (e.g. binary search algorithm)">
+                        <button id="ai-search-btn" class="btn btn-ai">Search Notes</button>
+                    </div>
+
+                    <div id="ai-search-results" class="results-list">
+                        <!-- Ranked note cards rendered here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Myntra Trainee Enablement Platform — StudyTrack. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
