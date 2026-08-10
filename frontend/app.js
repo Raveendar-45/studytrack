@@ -38,10 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const aiSearchResults = document.getElementById("ai-search-results");
 
     // --- Base API URL Configuration ---
-    // Relative path for same-origin single-process mode, fallback to http://localhost:8000
-    const API_BASE = window.location.origin.includes("localhost") || window.location.origin.includes("127.0.0.1")
-        ? ""
-        : "http://localhost:8000";
+    // If loaded directly from FastAPI on port 8000, use relative paths "".
+    // If loaded from Live Server (port 5500) or file://, target http://localhost:8000.
+    const API_BASE = (window.location.port === "8000") ? "" : "http://localhost:8000";
 
     // --- Error Banner Management ---
     function showError(message) {
