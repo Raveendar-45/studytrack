@@ -24,9 +24,6 @@ class CourseResponse(CourseBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
-    # Fallback for Pydantic v1
-    class Config:
-        orm_mode = True
 
 
 # --- Student Schemas ---
@@ -66,5 +63,4 @@ class StudentResponse(StudentBase):
     courses: List[CourseResponse] = []
 
     model_config = ConfigDict(from_attributes=True)
-    class Config:
-        orm_mode = True
+

@@ -43,7 +43,7 @@ def summarize_notes(raw_text: str) -> Dict[str, Any]:
     # 1. Topic derivation: Clean first non-empty line or title-like prefix
     first_line = clean_text.splitlines()[0].strip()
     # Strip leading markdown symbols like # or *
-    first_line = re.sub(r'^[#*-\s]+', '', first_line)
+    first_line = re.sub(r'^[#*\-\s]+', '', first_line)
     topic = first_line[:60] if first_line else "untitled"
 
     # 2. Key Points derivation: Split on . / ! / ? taking up to 3 non-empty sentences
@@ -112,6 +112,8 @@ def cosine_similarity(vec_a: List[float], vec_b: List[float]) -> float:
     similarity = dot_product / (norm_a * norm_b)
     
     # Clamp value within [-1.0, 1.0] to account for floating point inaccuracies
+    if abs(similarity - 1.0) < 1e-7:
+        return 1.0
     return max(-1.0, min(1.0, float(similarity)))
 
 
