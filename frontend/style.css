@@ -85,6 +85,7 @@ body {
 /* --- Main Header --- */
 .main-header {
     background: rgba(15, 23, 42, 0.85);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     padding: 16px 32px;
@@ -173,6 +174,7 @@ body {
 
 .dashboard-card {
     background: var(--bg-card);
+    -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
