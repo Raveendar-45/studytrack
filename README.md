@@ -50,7 +50,7 @@ Ensure Python 3.10+ is installed on your system.
 ```bash
 # Clone the repository
 git clone <repository_url>
-cd ravi
+cd studytrack
 
 # Install backend dependencies
 python -m pip install -r backend/requirements.txt
