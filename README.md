@@ -49,7 +49,7 @@ Ensure Python 3.10+ is installed on your system.
 
 ```bash
 # Clone the repository
-git clone <repository_url>
+git clone https://github.com/Raveendar-45/studytrack.git
 cd studytrack
 
 # Install backend dependencies
